@@ -64,4 +64,20 @@ public class Request {
         requestMessage = new String(bytes, 0, length);
         System.out.println(requestMessage);
     }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public String getRequestURI() {
+        return requestURI;
+    }
+
+    public String getProtocol() {
+        return protocol;
+    }
+
+    public String getHeader(String headerName){
+        return requestHeaders.get(headerName);
+    }
 }
