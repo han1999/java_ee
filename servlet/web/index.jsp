@@ -7,17 +7,17 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
+<head>
     <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  <form action="/servlet/servlet2" method="post">
+</head>
+<body>
+$END$
+<form action="/servlet/servlet2" method="post">
     <input type="submit">
-  </form>
+</form>
 
-  <form action="/servlet/servlet3" method="post">
+<form action="/servlet/servlet3" method="post">
     <input type="submit">
-  </form>
-  </body>
+</form>
+</body>
 </html>
