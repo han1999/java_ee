@@ -21,4 +21,24 @@
         <servlet-name>second</servlet-name>
         <url-pattern>/servlet2</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>life</servlet-name>
+        <servlet-class>com.hanxiao.life.LifeCycleServlet</servlet-class>
+        <load-on-startup>-1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>life</servlet-name>
+        <url-pattern>/life</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>url</servlet-name>
+        <servlet-class>com.hanxiao.url.UrlServlet2</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>url</servlet-name>
+        <url-pattern>/url3</url-pattern>
+        <url-pattern>/url4</url-pattern>
+    </servlet-mapping>
 </web-app>
