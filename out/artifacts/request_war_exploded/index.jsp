@@ -11,13 +11,54 @@
     <title>$Title$</title>
 </head>
 <body>
-$END$
+$END$<br>
+
+<label>param1</label><br>
 <form action="/request/param1" method="post">
     <input type="text" name="username"><br>
     <input type="password" name="password"><br>
     <input type="submit"><br>
 </form>
+
+<label>param2</label><br>
 <form action="/request/param2" method="post">
+    <input type="text" name="username"><br>
+    <input type="password" name="password"><br>
+    <input type="radio" name="gender" value="male">男
+    <input type="radio" name="gender" value="female">女<br>
+    <input type="checkbox" name="hobby" value="java">java
+    <input type="checkbox" name="hobby" value="c++">c++
+    <input type="checkbox" name="hobby" value="python">python<br>
+    <input type="submit"><br>
+</form>
+
+
+<label>toBean1</label><br>
+<form action="/request/toBean1" method="post">
+    <input type="text" name="username"><br>
+    <input type="password" name="password"><br>
+    <input type="radio" name="gender" value="male">男
+    <input type="radio" name="gender" value="female">女<br>
+    <input type="checkbox" name="hobby" value="java">java
+    <input type="checkbox" name="hobby" value="c++">c++
+    <input type="checkbox" name="hobby" value="python">python<br>
+    <input type="submit"><br>
+</form>
+
+<label>toBean2</label><br>
+<form action="/request/toBean2" method="post">
+    <input type="text" name="username"><br>
+    <input type="password" name="password"><br>
+    <input type="radio" name="gender" value="male">男
+    <input type="radio" name="gender" value="female">女<br>
+    <input type="checkbox" name="hobby" value="java">java
+    <input type="checkbox" name="hobby" value="c++">c++
+    <input type="checkbox" name="hobby" value="python">python<br>
+    <input type="submit"><br>
+</form>
+
+<label>encoding</label><br>
+<form action="/request/encoding1" method="post">
     <input type="text" name="username"><br>
     <input type="password" name="password"><br>
     <input type="radio" name="gender" value="male">男
