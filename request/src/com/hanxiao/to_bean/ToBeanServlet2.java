@@ -1,4 +1,4 @@
-package com.hanxiao.toBean;
+package com.hanxiao.to_bean;
 
 import com.hanxiao.bean.User;
 import org.apache.commons.beanutils.BeanUtils;
