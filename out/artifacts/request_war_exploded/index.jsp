@@ -58,7 +58,7 @@ $END$<br>
 </form>
 
 <label>encoding</label><br>
-<form action="/request/encoding1" method="post">
+<form action="encoding1" method="post">
     <input type="text" name="username"><br>
     <input type="password" name="password"><br>
     <input type="radio" name="gender" value="male">男
