@@ -21,4 +21,41 @@
         <servlet-name>second</servlet-name>
         <url-pattern>/servlet2</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>life</servlet-name>
+        <servlet-class>com.hanxiao.life.LifeCycleServlet</servlet-class>
+        <load-on-startup>-1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>life</servlet-name>
+        <url-pattern>/life</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>url</servlet-name>
+        <servlet-class>com.hanxiao.url.UrlServlet2</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>url</servlet-name>
+        <url-pattern>/url3</url-pattern>
+        <url-pattern>/url4</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>config2</servlet-name>
+        <servlet-class>com.hanxiao.config.ConfigServlet2</servlet-class>
+        <init-param>
+            <param-name>name</param-name>
+            <param-value>hanxiao</param-value>
+        </init-param>
+        <init-param>
+            <param-name>age</param-name>
+            <param-value>18</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>config2</servlet-name>
+        <url-pattern>/config2</url-pattern>
+    </servlet-mapping>
 </web-app>
