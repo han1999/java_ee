@@ -1,0 +1,43 @@
+package com.hanxiao.stream;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+@WebServlet("/")
+public class StreamServlet2 extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        String contextPath = request.getContextPath();
+//        response.setContentType("text/html;charset=utf-8");
+        String servletPath = request.getServletPath();
+        ServletContext servletContext = getServletContext();
+        String realPath = servletContext.getRealPath(servletPath);
+        System.out.println(realPath);
+        File file = new File(realPath);
+        if (!(file.exists() && file.isFile())){
+            response.setStatus(404);
+            response.getWriter().println("404 not Found!");
+            return;
+        }
+        FileInputStream fileInputStream = new FileInputStream(file);
+        ServletOutputStream outputStream = response.getOutputStream();
+        int len=0;
+        byte[] bytes = new byte[4096];
+        while ((len=fileInputStream.read(bytes))!=-1){
+            outputStream.write(bytes, 0, len);
+        }
+        fileInputStream.close();
+        outputStream.flush();
+    }
+}
