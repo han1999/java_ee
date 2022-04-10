@@ -33,8 +33,9 @@ public class DiskServlet extends HttpServlet {
         String reqMessage = stringBuffer.toString();
         response.getWriter().println(reqMessage);
         ServletContext servletContext = getServletContext();
-        //if 1.txt doesn't exists, it will create one.
+        //if 1.txt doesn't exists, it will also return "realPath+1.txt"
         String realPath = servletContext.getRealPath("1.txt");
+        //If file not exists, fileOutputStream will create one.
         FileOutputStream fileOutputStream = new FileOutputStream(realPath);
         fileOutputStream.write(reqMessage.getBytes());
         fileOutputStream.close();
