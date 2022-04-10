@@ -22,22 +22,25 @@ public class StreamServlet2 extends HttpServlet {
 //        response.setContentType("text/html;charset=utf-8");
         String servletPath = request.getServletPath();
         ServletContext servletContext = getServletContext();
+//        String substring = servletPath.substring(1);
+        System.out.println("servletPath = " + servletPath);
+//        System.out.println("substring = " + substring);
         String realPath = servletContext.getRealPath(servletPath);
-        System.out.println(realPath);
-        File file = new File(realPath);
-        if (!(file.exists() && file.isFile())){
+        System.out.println("realPath = " + realPath);
+        try{
+            File file = new File(realPath);
+            FileInputStream fileInputStream = new FileInputStream(file);
+            ServletOutputStream outputStream = response.getOutputStream();
+            int len=0;
+            byte[] bytes = new byte[4096];
+            while ((len=fileInputStream.read(bytes))!=-1){
+                outputStream.write(bytes, 0, len);
+            }
+            fileInputStream.close();
+            outputStream.flush();
+        }catch (Exception e){
             response.setStatus(404);
-            response.getWriter().println("404 not Found!");
-            return;
+            response.getWriter().println("File not Found!");
         }
-        FileInputStream fileInputStream = new FileInputStream(file);
-        ServletOutputStream outputStream = response.getOutputStream();
-        int len=0;
-        byte[] bytes = new byte[4096];
-        while ((len=fileInputStream.read(bytes))!=-1){
-            outputStream.write(bytes, 0, len);
-        }
-        fileInputStream.close();
-        outputStream.flush();
     }
 }
