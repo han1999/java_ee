@@ -1,5 +1,6 @@
 package com.hanxiao.upload;
 
+import com.hanxiao.beans.User;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -16,8 +17,8 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-@WebServlet("/upload2")
-public class UploadServlet2 extends HttpServlet {
+@WebServlet("/upload3")
+public class UploadServlet3 extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
         request.setCharacterEncoding("utf-8");
@@ -33,21 +34,23 @@ public class UploadServlet2 extends HttpServlet {
 
         ServletFileUpload upload = new ServletFileUpload(diskFileItemFactory);
 //        upload.setSizeMax(1024);
+        User user = new User();
         try {
             List<FileItem> fileItems = upload.parseRequest(request);
             for (FileItem fileItem : fileItems) {
                 if (fileItem.isFormField()) {
-                    processFormField(fileItem);
+                    processFormField(fileItem,user);
                 } else {
-                    processUploadedFile(fileItem);
+                    processUploadedFile(fileItem,user);
                 }
             }
         } catch (FileUploadException e) {
             e.printStackTrace();
         }
+        System.out.println("user = " + user);
     }
 
-    private void processUploadedFile(FileItem fileItem) {
+    private void processUploadedFile(FileItem fileItem, User user) {
         String fieldName = fileItem.getFieldName();
         String name = fileItem.getName();
         String contentType = fileItem.getContentType();
@@ -59,7 +62,8 @@ public class UploadServlet2 extends HttpServlet {
         System.out.println("inMemory = " + inMemory);
         System.out.println("size = " + size);
         ServletContext servletContext = getServletContext();
-        String realPath = servletContext.getRealPath(fieldName + "/" + name);
+        String relativePath=fieldName+"/"+name;
+        String realPath = servletContext.getRealPath(relativePath);
         File file = new File(realPath);
         if (!file.getParentFile().exists()) {
             file.getParentFile().mkdirs();
@@ -69,13 +73,19 @@ public class UploadServlet2 extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        user.setImage(relativePath);
     }
 
-    private void processFormField(FileItem fileItem) throws UnsupportedEncodingException {
+    private void processFormField(FileItem fileItem, User user) throws UnsupportedEncodingException {
         String fieldName = fileItem.getFieldName();
         String string = fileItem.getString("utf-8");
         System.out.println("fieldName = " + fieldName);
         System.out.println("string = " + string);
+        if ("username".equals(fieldName)){
+            user.setUsername(string);
+        } else if ("password".equals(fieldName)) {
+            user.setPassword(string);
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

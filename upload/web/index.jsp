@@ -12,6 +12,7 @@
 </head>
 <body>
 $END$<br>
+<label>upload1</label>
 <form action="/upload/upload1" enctype="multipart/form-data" method="post">
     <input type="text" name="username"> <br>
     <input type="password" name="password"><br>
@@ -19,7 +20,40 @@ $END$<br>
     <input type="submit"><br>
 </form>
 
+<label>upload2</label>
 <form action="/upload/upload2" enctype="multipart/form-data" method="post">
+    <input type="text" name="username"> <br>
+    <input type="password" name="password"><br>
+    <input type="file" name="image"><br>
+    <input type="submit"><br>
+</form>
+
+<label>upload3</label>
+<form action="/upload/upload3" enctype="multipart/form-data" method="post">
+    <input type="text" name="username"> <br>
+    <input type="password" name="password"><br>
+    <input type="file" name="image"><br>
+    <input type="submit"><br>
+</form>
+
+<label>upload4</label>
+<form action="/upload/upload4" enctype="multipart/form-data" method="post">
+    <input type="text" name="username"> <br>
+    <input type="password" name="password"><br>
+    <input type="file" name="image"><br>
+    <input type="submit"><br>
+</form>
+
+<label>upload5</label>
+<form action="/upload/upload5" enctype="multipart/form-data" method="post">
+    <input type="text" name="username"> <br>
+    <input type="password" name="password"><br>
+    <input type="file" name="image"><br>
+    <input type="submit"><br>
+</form>
+
+<label>filename</label>
+<form action="/upload/filename" enctype="multipart/form-data" method="post">
     <input type="text" name="username"> <br>
     <input type="password" name="password"><br>
     <input type="file" name="image"><br>
