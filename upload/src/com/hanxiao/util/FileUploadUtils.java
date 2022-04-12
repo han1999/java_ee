@@ -47,23 +47,32 @@ public class FileUploadUtils {
 
     private static void processUploadedFile(FileItem fileItem, Map<String, Object> map, HttpServletRequest request) {
         String fieldName = fileItem.getFieldName();
-        String name = fileItem.getName();
-        name = UUID.randomUUID().toString() + name;
+        String filename = fileItem.getName();
+        filename = UUID.randomUUID().toString() + filename;
+        int hashCode = filename.hashCode();
+        String hexString = Integer.toHexString(hashCode);
+        String relativePath = fieldName;
+        char[] chars = hexString.toCharArray();
+        for (char aChar : chars) {
+            //a+=b  -----> a=a+b
+            relativePath += "/" + aChar;
+        }
         String contentType = fileItem.getContentType();
         boolean inMemory = fileItem.isInMemory();
         long size = fileItem.getSize();
         System.out.println("fieldName = " + fieldName);
-        System.out.println("name = " + name);
+        System.out.println("filename = " + filename);
         System.out.println("contentType = " + contentType);
         System.out.println("inMemory = " + inMemory);
         System.out.println("size = " + size);
         ServletContext servletContext = request.getServletContext();
-        String relativePath = fieldName + "/" + name;
+        relativePath += "/" + filename;
         String realPath = servletContext.getRealPath(relativePath);
         File file = new File(realPath);
         if (!file.getParentFile().exists()) {
             file.getParentFile().mkdirs();
         }
+
         try {
             fileItem.write(file);
         } catch (Exception e) {

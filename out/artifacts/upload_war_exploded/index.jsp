@@ -59,5 +59,13 @@ $END$<br>
     <input type="file" name="image"><br>
     <input type="submit"><br>
 </form>
+
+<label>login</label>
+<form action="/upload/login" enctype="multipart/form-data" method="post">
+    <input type="text" name="username"> <br>
+    <input type="password" name="password"><br>
+    <input type="file" name="image"><br>
+    <input type="submit"><br>
+</form>
 </body>
 </html>
