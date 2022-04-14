@@ -23,7 +23,8 @@
 hs_err_pid*
 
 # workspace for Idea (It is constantly being revised.)
-# .idea folder
+# .idea folder 
+# notice: */.idea/ doesn't contain .idea/, that is , * can't represent empty.
 **/.idea/
 
 # target
