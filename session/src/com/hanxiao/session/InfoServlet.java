@@ -18,6 +18,9 @@ public class InfoServlet extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
         HttpSession session = request.getSession();
         String username = (String) session.getAttribute("username");
+        String id = session.getId();
+        System.out.println("session = " + session);
+        System.out.println("id = " + id);
         response.getWriter().println("欢迎您！"+username);
     }
 }
