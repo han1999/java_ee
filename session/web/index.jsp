@@ -12,11 +12,18 @@
 </head>
 <body>
 $END$
+<label>/cookie/login</label>
+<form action="/session/cookie/login" method="post">
+    <input type="text" name="username"><br>
+    <input type="password" name="password"><br>
+    <input type="submit"><br>
+</form>
 
+<label>/login</label>
 <form action="/session/login" method="post">
     <input type="text" name="username"><br>
     <input type="password" name="password"><br>
-    <input type="submit">
+    <input type="submit"><br>
 </form>
 </body>
 </html>
