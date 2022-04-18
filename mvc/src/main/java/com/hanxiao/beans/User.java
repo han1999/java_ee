@@ -1,4 +1,4 @@
-package beans;
+package com.hanxiao.beans;
 
 /**
  * @description:
@@ -9,18 +9,20 @@ package beans;
 public class User {
     private String username;
     private String password;
-
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
+    private String confirmPassword;
 
     @Override
     public String toString() {
         return "User{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
                 '}';
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public String getUsername() {
@@ -37,6 +39,20 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    public User(String username, String password, String confirmPassword) {
+        this.username = username;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
     }
 
     public User() {
