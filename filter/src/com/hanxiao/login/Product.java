@@ -7,6 +7,7 @@ package com.hanxiao.login;
  **/
 
 public class Product {
+    public static int price;
     private String name;
 
     public void say() {
