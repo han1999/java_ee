@@ -60,6 +60,11 @@ public class UserJsonDao  implements  UserDao{
     }
 
     @Override
+    public int login(User loginUser) {
+        return 0;
+    }
+
+    @Override
     public void method1() {
 
     }

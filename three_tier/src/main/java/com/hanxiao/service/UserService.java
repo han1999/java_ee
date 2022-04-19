@@ -12,5 +12,6 @@ import java.io.IOException;
 public interface UserService {
     boolean register(User registerUser) throws IOException;
 
+    int login(User loginUser);
     void function();
 }
