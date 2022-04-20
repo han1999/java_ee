@@ -20,6 +20,11 @@ public class UserServiceImpl1 implements UserService {
     }
 
     @Override
+    public int login(User loginUser) {
+        return 0;
+    }
+
+    @Override
     public void function() {
         userDao.method1();
         userDao.method2();

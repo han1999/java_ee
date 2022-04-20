@@ -1,10 +1,9 @@
 package com.hanxiao.dao;
 
 import com.hanxiao.model.User;
+import com.hanxiao.utils.Constant;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.*;
 
 /**
  * @description:
@@ -33,6 +32,58 @@ public class UserSqlDao implements UserDao {
         } catch (Exception e) {
         }
         return false;
+    }
+
+    @Override
+    public int login(User loginUser) {
+        String username = loginUser.getUsername();
+        String password = loginUser.getPassword();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_ee",
+                    "root", "123456");
+            preparedStatement = connection.prepareStatement("select * from users where username=? and password=?");
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return Constant.LOGIN_SUCCESS;
+            } else {
+                return Constant.LOGIN_FAIL;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (preparedStatement != null) {
+                        try {
+                            preparedStatement.close();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        } finally {
+                            if (connection != null) {
+                                try {
+                                    connection.close();
+                                } catch (SQLException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return Constant.LOGIN_ERROR;
     }
 
     @Override

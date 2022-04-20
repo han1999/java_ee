@@ -3,6 +3,7 @@ package com.hanxiao.controller;
 import com.hanxiao.model.User;
 import com.hanxiao.service.UserService;
 import com.hanxiao.service.UserServiceImpl2;
+import com.hanxiao.utils.Constant;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -27,8 +28,33 @@ public class MVCRegisterServlet extends javax.servlet.http.HttpServlet {
         }
     }
 
-    private void login(HttpServletRequest request, HttpServletResponse response) {
-
+    private void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        User loginUser = new User();
+        try {
+            BeanUtils.populate(loginUser, parameterMap);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        String username = loginUser.getUsername();
+        String password = loginUser.getPassword();
+        if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
+            response.getWriter().println("参数不全，重输！");
+            response.setHeader("refresh", "1;url=" + request.getContextPath() + "/login.html");
+            return;
+        }
+        int loginCode = userService.login(loginUser);
+        if (loginCode== Constant.LOGIN_SUCCESS) {
+            response.getWriter().println("登录成功，欢迎!"+username);
+        } else if (loginCode == Constant.LOGIN_FAIL) {
+            response.getWriter().println("登录失败！重登！");
+            response.setHeader("refresh", "1;url=" + request.getContextPath() + "/login.html");
+        } else if (loginCode == Constant.LOGIN_ERROR) {
+            response.getWriter().println("服务器错误,稍后再登录！");
+            response.setHeader("refresh", "1;url=" + request.getContextPath() + "/login.html");
+        }
     }
 
     private void register(HttpServletRequest request, HttpServletResponse response) throws IOException {
